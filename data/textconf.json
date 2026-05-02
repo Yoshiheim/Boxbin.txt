@@ -1,19 +1,19 @@
 {
     "name": {
-    	"text": "Presses the Pastebin",
+    	"text": "MyPastebin.txt",
     	"size": 45
     },
     "logo": {
         "hide": false,
-        "path": "./data/pastebindotcom.png",
+        "path": "./data/icon.png",
         "color": {
             "r": 255,
             "g": 255,
             "b": 255
         },
-        "width": 90,
-        "heigth": 90,
-        "size": 8,
+        "width": 120,
+        "heigth": 140,
+        "size": 6,
         "charmap": ""
     },
     "create_paste_div":{
@@ -21,12 +21,12 @@
         "for_topic_index": 1
     },
     "description": {
-        "hide": true,
+        "hide": false,
         "size": 15,
         "text": [
-            "My First Pastebin whats i self-hosted :3",
-            "Paste Something, but only legal thing...",
-            "This Website is Open Source and Code Available in GitHub(https://github.com/Yoshiheim/Furbin.txt)"
+            "My First PasteBin For Hosting",
+            "CopyPaste here, but only legal thing...",
+            "Btw if this website for hosting, so its Open Source website and Code Available in GitHub(https://github.com/Yoshiheim/Furbin.txt)"
         ]
     },
     "creators_github": "Yoshiheim"

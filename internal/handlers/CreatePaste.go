@@ -89,16 +89,16 @@ func CreatePaste(w http.ResponseWriter, r *http.Request) {
 	// escape all content
 	body.Title = html.EscapeString(helpers.TruncateByte(body.Title, data.Configs.PasteLens.TitleLen))
 	body.Content = html.EscapeString(helpers.TruncateByte(body.Content, data.Configs.PasteLens.ContentLen))
-	body.Author = html.EscapeString(helpers.ToASCII(helpers.TruncateByte(helpers.DestoySpaces(body.Author), data.Configs.PasteLens.AuthorLen)))
+	body.Author = html.EscapeString(helpers.ToASCII(helpers.TruncateByte(helpers.DestroySpaces(body.Author), data.Configs.PasteLens.AuthorLen)))
 
 	//Check is 'title' in JSON requet is empty.
-	if helpers.DestoySpaces(body.Title) == "" {
+	if helpers.DestroySpaces(body.Title) == "" {
 		http.Error(w, "Title Is empty", http.StatusBadRequest)
 		return
 	}
 
 	//same but with 'content'.
-	if helpers.DestoySpaces(body.Content) == "" {
+	if helpers.DestroySpaces(body.Content) == "" {
 		http.Error(w, "Content Is empty", http.StatusBadRequest)
 		return
 	}

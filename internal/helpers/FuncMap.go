@@ -39,7 +39,7 @@ var FuncMap = template.FuncMap{
 	"RGB2String": func(r data.RGB) string {
 		return fmt.Sprintf("%s,%s,%s", strconv.Itoa(r.R), strconv.Itoa(r.G), strconv.Itoa(r.B))
 	},
-	"DestorySpaces": func(s string) string {
-		return DestoySpaces(s)
+	"DestroySpaces": func(s string) string {
+		return DestroySpaces(s)
 	},
 }

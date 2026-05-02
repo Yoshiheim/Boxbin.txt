@@ -75,6 +75,14 @@ a {
     text-align: center;
 }
 
+.code {
+    display: flex;
+    background-color: rgb(31, 31, 34);
+    width: 50%;
+    border: solid 1px rgb(188, 200, 188);
+    padding: 1rem;
+    gap: 2rem   ; 
+}
 
 @media (max-width: 800px) {
     body {

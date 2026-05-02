@@ -26,7 +26,7 @@
         [[/{{.topic.Name}}]]
     </h2>
 
-    <div class="pas" style="background-color: rgb(55, 55, 70);">
+    <div>
         {{if .temp }}
             [PASTES] - [ALL PASTES ARE DELETED AFTER {{.temp}}]
         {{else}}
@@ -40,9 +40,9 @@
                 {{if .IsTitled}}
                     (Pinned)
                 {{end}}
-                {{if DestorySpaces (CutString .Content 250) }}
-                	<div style="background-color: rgb(70,70,90); width: 50%; text-align: left">
-						{{CutString (Escape .Content) 250}}
+                {{if DestroySpaces (CutString .Content 250) }}
+                	<div class="code">
+						<code>{{CutString (Escape .Content) 250}}</code>
 					</div>
 				{{end}}
             </div>
