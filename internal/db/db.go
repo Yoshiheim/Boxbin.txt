@@ -28,63 +28,34 @@ func InitDataBase() {
 	}
 
 	DB.Exec("PRAGMA foreign_keys = ON")
-	err = DB.AutoMigrate(&modules.Paste{}, &modules.Topic{})
+	err = DB.AutoMigrate(&modules.Paste{})
 	if err != nil {
 		panic(err.Error())
 	}
 
-	var count int64
-	DB.Model(&modules.Topic{}).Count(&count)
+	cfg, err := data.LoadConfig("./data/config.json")
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	if count >= 0 {
+	if len(cfg.Pastes) > 0 {
+		for _, p := range cfg.Pastes {
+			var paste modules.Paste
 
-		cfg, err := data.LoadConfig("./data/config.json")
-		if err != nil {
-			log.Fatalln(err)
-		}
+			result := DB.Where("title = ?", p.Title).First(&paste)
 
-		if len(cfg.Topics) > 0 {
-			for _, t := range cfg.Topics {
-				if t.Name == "" || t.Description == "" {
-					log.Fatalf("We have some null data, bro: T:%s D:%s", t.Name, t.Description)
-				}
-
-				var topic modules.Topic
-				result := DB.Where("name = ?", t.Name).First(&topic)
-
-				if result.Error != nil {
-					// не найден — создаём
-					DB.Create(&modules.Topic{
-						Name:        t.Name,
-						Description: t.Description,
-					})
-				} else {
-					// найден — обновляем
-					topic.Description = t.Description
-					DB.Save(&topic)
-				}
-			}
-		}
-		if len(cfg.Pastes) > 0 {
-			for _, p := range cfg.Pastes {
-				var paste modules.Paste
-
-				result := DB.Where("title = ?", p.Title).First(&paste)
-
-				if result.Error != nil {
-					DB.Create(&modules.Paste{
-						Title:    p.Title,
-						Content:  p.Content,
-						Author:   "WEBSITE SYSTEM",
-						IsTitled: p.IsTitled,
-						TopicID:  p.TopicIndex,
-					})
-				} else {
-					paste.Content = p.Content
-					paste.TopicID = p.TopicIndex
-					DB.Save(&paste)
-				}
+			if result.Error != nil {
+				DB.Create(&modules.Paste{
+					Title:    p.Title,
+					Content:  p.Content,
+					Author:   "WEBSITE SYSTEM",
+					IsTitled: p.IsTitled,
+				})
+			} else {
+				paste.Content = p.Content
+				DB.Save(&paste)
 			}
 		}
 	}
+
 }

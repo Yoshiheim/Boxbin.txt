@@ -58,7 +58,6 @@ func CreatePaste(w http.ResponseWriter, r *http.Request) {
 		Title   string `json:"title"`
 		Content string `json:"content"`
 		Author  string `json:"author"`
-		TopicID uint   `json:"topicid"`
 	}
 
 	// decode user's request
@@ -105,11 +104,10 @@ func CreatePaste(w http.ResponseWriter, r *http.Request) {
 
 	// Create Paste On DB.
 	// 'author' in JSON request is optional btw.
-	paste, err := helpers.CreatePasteIfTopicExists(db.DB, body.TopicID, modules.Paste{
+	paste, err := helpers.CreatePasteIfTopicExists(db.DB, modules.Paste{
 		Title:   body.Title,
 		Content: body.Content,
 		Author:  body.Author,
-		TopicID: body.TopicID,
 	})
 	if err != nil {
 		if errors.As(err, &gorm.ErrRecordNotFound) {

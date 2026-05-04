@@ -10,8 +10,5 @@ type Paste struct {
 
 	Author string `gorm:"default:'Anonymous'"`
 
-	TopicID uint
-	Topic   Topic `gorm:"constraint:OnDelete:CASCADE,OnUpdate:CASCADE;"`
-
 	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 }

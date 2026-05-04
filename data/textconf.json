@@ -1,6 +1,6 @@
 {
     "name": {
-    	"text": "MyPastebin.txt",
+    	"text": "Boxbin.txt",
     	"size": 45
     },
     "logo": {
@@ -11,9 +11,9 @@
             "g": 255,
             "b": 255
         },
-        "width": 125,
-        "heigth": 125,
-        "size": 8,
+        "width": 300,
+        "heigth": 300,
+        "size": 2,
         "charmap": ""
     },
     "create_paste_div":{
@@ -21,7 +21,7 @@
         "for_topic_index": 1
     },
     "description": {
-        "hide": false,
+        "hide": true,
         "size": 15,
         "text": [
             "My First PasteBin For Hosting",

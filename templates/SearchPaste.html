@@ -12,11 +12,15 @@
     </div>
     <div>
         <div>
-            [PASTES FINDED BY NAME]
+            {{if .keyword}}
+                [PASTES FINDED BY "{{.keyword}}"]
+            {{else}}
+                [PASTES FINDED BY EMPTY WORD]
+            {{end}}
         </div>
         {{if .pastes}}
             {{range .pastes}}
-                <div class="finded">
+                <div class="pas">
                     ID {{.ID}}: <a href="/paste/{{.ID}}">{{.Title}}</a>
                 </div>
             {{end}}

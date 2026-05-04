@@ -20,11 +20,6 @@ type NewPaste struct {
 func SearchPaste(w http.ResponseWriter, r *http.Request) {
 	keyword := r.FormValue("keyword")
 
-	if helpers.DestroySpaces(keyword) == "" {
-		http.Redirect(w, r, "/", http.StatusBadRequest)
-		return
-	}
-
 	keyword = helpers.DestroySpaces(keyword)
 
 	keyword = html.EscapeString(keyword)
@@ -58,6 +53,7 @@ func SearchPaste(w http.ResponseWriter, r *http.Request) {
 
 	//and render for client
 	tpl.Execute(w, map[string]any{
-		"pastes": finded_pastes,
+		"pastes":  finded_pastes,
+		"keyword": keyword,
 	})
 }
